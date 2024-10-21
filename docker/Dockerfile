@@ -14,4 +14,6 @@ CMD ["/usr/local/bin/datasette","serve","-h","0.0.0.0", "/var/db/minutes.db"]
 
 FROM cobb-tracker-site AS staging
 EXPOSE 8002
-CMD ["/usr/local/bin/datasette","/var/www/cobb-tracker","-p","8002","-h","0.0.0.0"]
+WORKDIR /var/www/cobb-tracker/
+CMD ["/usr/local/bin/datasette","serve", "-p", "8002", "-h","0.0.0.0", "minutes.db", "--metadata", "metadata.json"]
+

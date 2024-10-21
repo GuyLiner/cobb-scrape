@@ -1,0 +1,20 @@
+version: '3'
+services:
+  prod:
+    image: abettercobb/cobb-tracker:prod
+    restart: always
+    container_name: cobb-tracker
+    ports:
+      - "127.0.0.1:8001:8001"
+    volumes:
+      - /srv/cobb_data/minutes:/minutes
+      - /srv/cobb_data/db:/var/db
+
+  staging:
+    image: abettercobb/cobb-tracker:staging
+    restart: always
+    container_name: stg-cobb-tracker
+    ports:
+      - "127.0.0.1:8002:8002"
+    volumes:
+      - /srv/cobb_data/staging/:/var/www/cobb-tracker
